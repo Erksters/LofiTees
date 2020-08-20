@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ backgroundColor: "whitesmoke" }}>
+      <Router>
+        <Switch>
+          <Route exact path="/signin">
+            <>signin to view previous orders</>
+          </Route>
+
+          <Route exact path="/order">
+            <>order</>
+          </Route>
+
+          <Route exact path="/confirmation">
+            <>
+              hey you just completed an order! Here's some details <br /> Buy
+              more stuff <br />
+              Or you're here by accident, re-route to /<br />
+            </>
+          </Route>
+
+          <Route exact path="/myorders">
+            <>
+              <>
+                My Orders <br />
+              </>
+              Check if signed in or return to singin
+            </>
+          </Route>
+
+          <Route path="/:id">
+            <>single shirt or 404</>
+          </Route>
+          <Route exact path="/" name="Home">
+            <>Home page</>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
