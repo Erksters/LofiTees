@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+import Home from "./components/Home/Home";
 
 const App = () => {
   return (
@@ -36,7 +37,7 @@ const App = () => {
             <>single shirt or 404</>
           </Route>
           <Route exact path="/" name="Home">
-            <>Home page</>
+            <Home />
           </Route>
         </Switch>
       </Router>
