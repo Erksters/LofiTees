@@ -19,7 +19,7 @@ const LoginPage = (props) => {
       .then((res) => res.json())
       .then((body) => {
         console.log(body["token"]);
-        localStorage.setItem("lofiteestoken", body["token"]);
+        sessionStorage.setItem("lofiteestoken", body["token"]);
       })
       .catch((error) => {
         console.log("ERROR OH NO", error);
