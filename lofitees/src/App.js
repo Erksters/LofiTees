@@ -2,14 +2,15 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
+import LoginPage from "./components/Login/LoginPage";
 
 const App = () => {
   return (
     <div style={{ backgroundColor: "whitesmoke" }}>
       <Router>
         <Switch>
-          <Route exact path="/signin">
-            <>signin to view previous orders</>
+          <Route exact path="/login">
+            <LoginPage />
           </Route>
 
           <Route exact path="/order">

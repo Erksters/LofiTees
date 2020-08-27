@@ -1,5 +1,7 @@
-const myServer = "https://myboopostgres.herokuapp.com/";
-// const myServer = "http://127.0.0.1:8000/";
+// const myServer = "https://myboopostgres.herokuapp.com/";
+const myServer = "http://127.0.0.1:8000/";
 export const allShirts = myServer + "all_shirts";
 export const createOrder = myServer + "create_order";
-export const individualShirt = myServer + "individual_shirt/";
+export const individualShirt = myServer + "individual_shirt";
+export const loginServer = myServer + "api/login";
+export const findToken = localStorage.getItem("lofiteestoken") || false;
