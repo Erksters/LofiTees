@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import Loading from "../Loading/Loading";
 import { allShirts } from "../../api/api";
 import { Button } from "react-bootstrap";
+import { findToken } from "../../api/api";
 
 const Home = (props) => {
   const [shirts, setShirts] = useState([]);
+
+  console.log(findToken);
 
   const loadData = async () => {
     await fetch(allShirts)

@@ -1,13 +1,30 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-
+import { loginServer } from "../../api/api";
 const LoginPage = (props) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   console.log(userName);
   console.log(password);
 
-  const HandleSubmit = () => {};
+  const HandleSubmit = () => {
+    const uploadData = new FormData();
+    uploadData.append("username", userName);
+    uploadData.append("password", password);
+
+    fetch(loginServer, {
+      method: "POST",
+      body: uploadData,
+    })
+      .then((res) => res.json())
+      .then((body) => {
+        console.log(body["token"]);
+        localStorage.setItem("lofiteestoken", body["token"]);
+      })
+      .catch((error) => {
+        console.log("ERROR OH NO", error);
+      });
+  };
 
   return (
     <>
