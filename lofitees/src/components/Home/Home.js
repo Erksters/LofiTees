@@ -40,6 +40,7 @@ const Home = (props) => {
           {shirts.map((shirt) => (
             <>
               <Card
+                className="m-3"
                 style={{
                   width: 500,
                   display: "inline-block",
