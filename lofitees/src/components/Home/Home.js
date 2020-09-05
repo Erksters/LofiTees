@@ -23,7 +23,9 @@ const Home = (props) => {
     loadData();
   }, []);
 
-  console.log("all shirts", shirts);
+  console.log("Find Token", findToken);
+  console.log("location", sessionStorage.getItem("lofiteeslocationprofile"));
+  console.log("username", sessionStorage.getItem("lofiteesusername"));
 
   if (!shirts.length) {
     return <Loading />;

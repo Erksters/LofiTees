@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { loginServer } from "../../api/api";
+import swal from "sweetalert";
 const LoginPage = (props) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  console.log(userName);
-  console.log(password);
 
   const HandleSubmit = () => {
     const uploadData = new FormData();
@@ -18,11 +17,16 @@ const LoginPage = (props) => {
     })
       .then((res) => res.json())
       .then((body) => {
-        console.log(body["token"]);
         sessionStorage.setItem("lofiteestoken", body["token"]);
+        sessionStorage.setItem("lofiteesusername", body["username"]);
+        sessionStorage.setItem(
+          "lofiteeslocationprofile",
+          JSON.parse(body["locationprofile"])
+        );
+        window.location = "/my_profile";
       })
       .catch((error) => {
-        console.log("ERROR OH NO", error);
+        swal("Oops!", "Check your username and password and try again!");
       });
   };
 
@@ -31,16 +35,16 @@ const LoginPage = (props) => {
       {/* On small Screens */}
       <div className="d-none d-lg-block">
         <div className="p-2" style={{ textAlign: "center" }}>
-          <label>Enter UserName</label>
-          <textarea onChange={(e) => setUserName(e.target.value)} />
+          <label className="pr-2">Enter UserName</label>
+          <input type="text" onChange={(e) => setUserName(e.target.value)} />
           <br />
-          <label>Enter password</label>
-          <textarea onChange={(e) => setPassword(e.target.value)} />
+          <label className="pr-2">Enter password</label>
+          <input type="text" onChange={(e) => setPassword(e.target.value)} />
         </div>
 
-        <div>
+        <div className="centerDiv">
           <Button onClick={HandleSubmit} size="lg">
-            Submit
+            Sign In
           </Button>
         </div>
       </div>

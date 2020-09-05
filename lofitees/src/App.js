@@ -4,18 +4,26 @@ import "./App.css";
 import Home from "./components/Home/Home";
 import LoginPage from "./components/Login/LoginPage";
 import SingleShirt from "./components/SingleShirt/SingleShirt";
+import Header from "./components/Header/Header";
+import NavigationBar from "./components/NavBar/NavBar";
 
 const App = () => {
   return (
     <div style={{ backgroundColor: "whitesmoke" }}>
       <Router>
+        <Header />
+        <NavigationBar />
         <Switch>
           <Route exact path="/login">
             <LoginPage />
           </Route>
 
-          <Route exact path="/order">
-            <>order</>
+          <Route exact path="/my_profile">
+            <>my_profile</>
+          </Route>
+
+          <Route exact path="/my_orders">
+            <>my orders</>
           </Route>
 
           <Route exact path="/confirmation">
