@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
 import LoginPage from "./components/Login/LoginPage";
+import SingleShirt from "./components/SingleShirt/SingleShirt";
 
 const App = () => {
   return (
@@ -34,9 +35,7 @@ const App = () => {
             </>
           </Route>
 
-          <Route path="/:id">
-            <>single shirt or 404</>
-          </Route>
+          <Route path="/:id" component={SingleShirt}></Route>
           <Route exact path="/" name="Home">
             <Home />
           </Route>

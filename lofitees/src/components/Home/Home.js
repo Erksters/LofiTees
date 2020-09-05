@@ -38,31 +38,30 @@ const Home = (props) => {
         </div>
         <div>
           {shirts.map((shirt) => (
-            <>
-              <Card
-                className="m-3"
-                style={{
-                  width: 500,
-                  display: "inline-block",
-                  textAlign: "center",
-                }}
-              >
-                <Card.Header>{shirt.title}</Card.Header>
-                <Card.Body>
-                  <img
-                    src={`${myServer}media/${shirt.img}`}
-                    alt="whoops"
-                    width={400}
-                    height={400}
-                  />
-                  <br />
-                  <div style={{ textAlign: "center" }}>{shirt.description}</div>
-                </Card.Body>
-                <Card.Footer>
-                  <Button href={`${shirt.title}`}>See More Details</Button>
-                </Card.Footer>
-              </Card>
-            </>
+            <Card
+              key={shirt.title}
+              className="m-3"
+              style={{
+                width: 500,
+                display: "inline-block",
+                textAlign: "center",
+              }}
+            >
+              <Card.Header>{shirt.title}</Card.Header>
+              <Card.Body>
+                <img
+                  src={`${myServer}media/${shirt.img}`}
+                  alt="whoops"
+                  width={400}
+                  height={400}
+                />
+                <br />
+                <div style={{ textAlign: "center" }}>{shirt.description}</div>
+              </Card.Body>
+              <Card.Footer>
+                <Button href={`${shirt.title}`}>See More Details</Button>
+              </Card.Footer>
+            </Card>
           ))}
         </div>
       </div>
