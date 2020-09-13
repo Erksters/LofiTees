@@ -4,6 +4,7 @@ export const allShirts = myServer + "api/allshirts";
 export const createOrderNoLocationProfile =
   myServer + "api/create_order_no_location_profile";
 export const singleShirt = myServer + "api/get_shirt/";
+export const singleShirtByID = myServer + "api/get_shirt_by_id/";
 export const loginServer = myServer + "api/login";
 export const logoutServer = myServer + "api/logout";
 export const findToken = sessionStorage.getItem("lofiteestoken") || false;

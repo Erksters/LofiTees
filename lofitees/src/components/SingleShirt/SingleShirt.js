@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Loading from "../Loading/Loading";
 import { singleShirt, myServer } from "../../api/api";
 import "./SingleShirt.css";
@@ -48,7 +48,6 @@ const SingleShirt = (props) => {
       );
     }
 
-    console.log(sessionStorage.getItem("myCart"));
     swal(`You added "${thisShirt[0].title}" t-shirt to your cart!`);
   };
 
@@ -83,7 +82,9 @@ const SingleShirt = (props) => {
             }}
           >
             {quantityArray.map((digit) => (
-              <option value={digit}>{digit.toString()}</option>
+              <option key={digit} value={digit}>
+                {digit.toString()}
+              </option>
             ))}
           </select>
         </div>
@@ -97,7 +98,9 @@ const SingleShirt = (props) => {
             }}
           >
             {sizeArray.map((lettercode) => (
-              <option value={lettercode}>{lettercode}</option>
+              <option key={lettercode} value={lettercode}>
+                {lettercode}
+              </option>
             ))}
           </select>
         </div>

@@ -1,26 +1,30 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import SingleItem from "./SingleItem";
 
 const CartSummary = (props) => {
   const shirtIDs = sessionStorage.getItem("myCart");
   const splitList = shirtIDs.split(",");
   splitList.splice(splitList.length - 1, 1);
 
-  console.log(shirtIDs);
-  console.log("HI", splitList);
-
   var res = Array.from(new Set(splitList)).map((a) => ({
-    name: a,
-    y: splitList.filter((f) => f === a).length,
+    ID_Size: a,
+    amount: splitList.filter((f) => f === a).length,
   }));
 
-  console.log(res);
-
   return (
-    <Card>
-      <Card.Header>Summary</Card.Header>
-      <Card.Body>{}</Card.Body>
-    </Card>
+    <div>
+      <Card className="m-2" style={{ width: 600 }}>
+        <Card.Header>
+          <h3 style={{ textAlign: "center" }}>Summary</h3>
+        </Card.Header>
+        <Card.Body>
+          {res.map((item, index) => (
+            <SingleItem key={index} shirtContents={item} />
+          ))}
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
 
