@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Loading from "../Loading/Loading";
-// import ProfileNotFound from "../ProfileNotFound/ProfileNotFound";
 import { singleShirt, myServer } from "../../api/api";
 import "./SingleShirt.css";
 import ShirtNotFound from "./ShirtNotFound";
+import swal from "sweetalert";
+import { Button } from "react-bootstrap";
 
 const SingleShirt = (props) => {
   //   window.document.title = props.match.params.id;
   const [thisShirt, setThisShirt] = useState(0);
+
+  const [quantity, setQuantity] = useState(1);
+  const [size, setSize] = useState("Large");
+  const quantityArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const sizeArray = ["Small", "Medium", "Large"];
 
   useEffect(() => {
     loadData();
@@ -29,6 +35,23 @@ const SingleShirt = (props) => {
   };
 
   console.log(thisShirt);
+  const addToCart = () => {
+    if (sessionStorage.getItem("myCart") === null) {
+      sessionStorage.setItem("myCart", "");
+    }
+    for (let i = 0; i < quantity; i++) {
+      sessionStorage.setItem(
+        "myCart",
+        sessionStorage
+          .getItem("myCart")
+          .concat(thisShirt[0].pk + "." + size + ",")
+      );
+    }
+
+    console.log(sessionStorage.getItem("myCart"));
+    swal(`You added "${thisShirt[0].title}" t-shirt to your cart!`);
+  };
+
   if (thisShirt === 0) {
     return <Loading finishedLoading={false} />;
   } else if (thisShirt === 404) {
@@ -47,9 +70,39 @@ const SingleShirt = (props) => {
             height={400}
           />
         </div>
-
         <div className="centerDiv">
           <div className="descriptionDisplay">{thisShirt[0].description}</div>
+        </div>
+
+        <div className="centerDiv">
+          <div>Select Quantity</div>
+          <select
+            value={quantity}
+            onChange={(e) => {
+              setQuantity(e.target.value);
+            }}
+          >
+            {quantityArray.map((digit) => (
+              <option value={digit}>{digit.toString()}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="centerDiv">
+          <div>Select Size</div>
+          <select
+            value={size}
+            onChange={(e) => {
+              setSize(e.target.value);
+            }}
+          >
+            {sizeArray.map((lettercode) => (
+              <option value={lettercode}>{lettercode}</option>
+            ))}
+          </select>
+        </div>
+        <div className="centerDiv">
+          <Button onClick={addToCart}>Add to Cart</Button>
         </div>
       </>
     );

@@ -6,6 +6,7 @@ import LoginPage from "./components/Login/LoginPage";
 import SingleShirt from "./components/SingleShirt/SingleShirt";
 import Header from "./components/Header/Header";
 import NavigationBar from "./components/NavBar/NavBar";
+import ShowMyCart from "./components/MyCart/ShowMyCart";
 
 const App = () => {
   return (
@@ -43,7 +44,11 @@ const App = () => {
             </>
           </Route>
 
+          <Route exact path="/my_cart">
+            <ShowMyCart />
+          </Route>
           <Route path="/:id" component={SingleShirt}></Route>
+
           <Route exact path="/" name="Home">
             <Home />
           </Route>

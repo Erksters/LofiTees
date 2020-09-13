@@ -44,6 +44,7 @@ const NavigationBar = (props) => {
           ) : (
             <></>
           )}
+          <Nav.Link href="/my_cart">View Cart</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
