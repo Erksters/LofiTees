@@ -18,7 +18,15 @@ const ShowMyCart = (props) => {
   const [zipcode, setZipcode] = useState("");
 
   const shirtIDs = sessionStorage.getItem("myCart");
-  const splitList = shirtIDs.split(",");
+  var splitList;
+  if(shirtIDs === null ){
+    splitList = [];
+  }
+  else{ 
+    splitList = shirtIDs.split(",");
+  }
+  
+  
   splitList.splice(splitList.length - 1, 1);
 
   let paypalRef = useRef();
