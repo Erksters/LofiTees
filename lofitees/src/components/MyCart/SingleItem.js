@@ -8,7 +8,7 @@ const SingleItem = (props) => {
 
   useEffect(() => {
     loadData();
-  });
+  }, []);
 
   const loadData = async () => {
     await fetch(`${singleShirtByID}${item["ID_Size"].split(".")[0]}`)
