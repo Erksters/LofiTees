@@ -23,27 +23,6 @@ const App = () => {
             <>my_profile</>
           </Route>
 
-          <Route exact path="/my_orders">
-            <>my orders</>
-          </Route>
-
-          <Route exact path="/confirmation">
-            <>
-              hey you just completed an order! Here's some details <br /> Buy
-              more stuff <br />
-              Or you're here by accident, re-route to /<br />
-            </>
-          </Route>
-
-          <Route exact path="/myorders">
-            <>
-              <>
-                My Orders <br />
-              </>
-              Check if signed in or return to singin
-            </>
-          </Route>
-
           <Route exact path="/my_cart">
             <ShowMyCart />
           </Route>

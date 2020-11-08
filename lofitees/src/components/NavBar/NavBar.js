@@ -32,10 +32,6 @@ const NavigationBar = (props) => {
               <NavDropdown.Item href="/my_profile">
                 View My Profile
               </NavDropdown.Item>
-              <NavDropdown.Item href="/my_orders">
-                Check My Orders
-              </NavDropdown.Item>
-
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={handleSignOut}>
                 Sign Out

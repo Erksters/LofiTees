@@ -35,8 +35,7 @@ const Home = (props) => {
       {/* Desktop */}
       <div className="d-none d-lg-block">
         <div style={{ textAlign: "center", fontSize: 28, fontWeight: "bold" }}>
-          Check Out Our <br />
-          Latest Designs
+          Check Out Our Latest Designs
         </div>
         <div>
           {shirts.map((shirt) => (
