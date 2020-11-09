@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   createOrderNoLocationProfile,
   findLocationProfile,
+  findToken,
+  findUsername,
 } from "../../api/api";
 import swal from "sweetalert";
 import { Button, Card, Col, Row } from "react-bootstrap";
@@ -43,7 +45,6 @@ const ShowMyCart = (props) => {
       lastName === "" ||
       userEmail === "" ||
       street === "" ||
-      street2 === "" ||
       state === "" ||
       zipcode === ""
     ) {
@@ -53,6 +54,8 @@ const ShowMyCart = (props) => {
       setGoodToPush(true);
     }
   };
+
+  console.log(splitList);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -96,13 +99,17 @@ const ShowMyCart = (props) => {
               uploadData.append("zipcode", zipcode);
               uploadData.append("lines", splitList);
 
+              if(findUsername){
+                uploadData.append("user_name", findUsername)
+              }
+
               fetch(createOrderNoLocationProfile, {
                 method: "POST",
                 body: uploadData,
               })
                 .then((res) => {
-                  if (res.status === 201) {
-                    swal("An email confirmation has been sent to ${userEmail}");
+                  if (res.status === 200) {
+                    swal(`An email confirmation has been sent to ${userEmail}`);
                   }
                 })
                 .catch((err) => console.log("ERROR ", err));

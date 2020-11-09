@@ -7,6 +7,7 @@ import SingleShirt from "./components/SingleShirt/SingleShirt";
 import Header from "./components/Header/Header";
 import NavigationBar from "./components/NavBar/NavBar";
 import ShowMyCart from "./components/MyCart/ShowMyCart";
+import MyProfile from "./components/MyProfile/MyProfile";
 
 const App = () => {
   return (
@@ -20,7 +21,7 @@ const App = () => {
           </Route>
 
           <Route exact path="/my_profile">
-            <>my_profile</>
+            <MyProfile />
           </Route>
 
           <Route exact path="/my_cart">
