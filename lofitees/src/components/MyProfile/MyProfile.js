@@ -1,40 +1,53 @@
 import React, { useState, useEffect } from "react";
 import Loading from "../Loading/Loading";
-import { myProfileServer } from "../../api/api";
+import { myProfileServer, myOrders, myOrderlines } from "../../api/api";
 import { Button, Card } from "react-bootstrap";
 import { findToken } from "../../api/api";
 
 const MyProfile = (props) => {
   const myUsername = sessionStorage.getItem("lofiteesusername")
   const myToken = findToken;
+  const [myOrders , setMyOrders] = useState([])
+  const [myOrderlines , setMyOrderlines] = useState([])
   console.log("MY TOKEN", myToken)
+  console.log("MY UserName", myUsername)
 
-  const loadData = async () => {
-    await fetch(myProfileServer)
+  const loadOrderData = async () => {
+    const uploadData = new FormData();
+    uploadData.append("user_name", myUsername);
+    console.log("AWAITING???")
+    await fetch(myOrders, {
+        method: "GET",
+        body: uploadData
+    })
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        //Unload Data
+          console.log("Some data", data)
+        setMyOrders([])
       })
       .catch((error) => {});
   };
 
   useEffect(() => {
-    loadData();
-  }, []);
+    loadOrderData();
+  });
 
-  console.log("location", sessionStorage.getItem("lofiteeslocationprofile"));
+//   console.log("location", sessionStorage.getItem("lofiteeslocationprofile"));
   
   if (!myToken) {
     window.location.href = "/"
-}
+  }
   return (
     <>
       {/* Desktop */}
       <div className="d-none d-lg-block">
         <div style={{ textAlign: "center", fontSize: 28, fontWeight: "bold" }}>
         Welcome back {myUsername}
+        <Card>
+            <Card.Header>Hello</Card.Header>
+        </Card>
         </div>
       </div>
 
