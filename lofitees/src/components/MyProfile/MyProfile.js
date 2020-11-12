@@ -1,38 +1,33 @@
 import React, { useState, useEffect } from "react";
-import Loading from "../Loading/Loading";
-import { myProfileServer, myOrders, myOrderlines } from "../../api/api";
+import { myProfileServer, myOrdersServer } from "../../api/api";
 import { Button, Card } from "react-bootstrap";
 import { findToken } from "../../api/api";
+import MyOrders from "./MyOrders";
 
 const MyProfile = (props) => {
   const myUsername = sessionStorage.getItem("lofiteesusername")
   const myToken = findToken;
-  const [myOrders , setMyOrders] = useState([])
-  const [myOrderlines , setMyOrderlines] = useState([])
-  console.log("MY TOKEN", myToken)
-  console.log("MY UserName", myUsername)
+//   console.log("MY TOKEN", myToken)
+//   console.log("MY UserName", myUsername)
 
-  const loadOrderData = async () => {
-    const uploadData = new FormData();
-    uploadData.append("user_name", myUsername);
-    console.log("AWAITING???")
-    await fetch(myOrders, {
-        method: "GET",
-        body: uploadData
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-          console.log("Some data", data)
-        setMyOrders([])
-      })
-      .catch((error) => {});
-  };
+//   const loadOrderData = async () => {
+//     const uploadData = new FormData();
+//     uploadData.append("user_name", myUsername);
+//     console.log("AWAITING???", myOrdersServer)
+//     await fetch(myOrdersServer, {
+//         method: "POST",
+//         body: uploadData
+//     })
+//       .then((res) => res.json())
+//       .then((body) =>
+//        setMyOrders([...body["results"]])
+//       )
+//       .catch((error) => {console.log("SOME ERROR")});
+//   };
 
   useEffect(() => {
-    loadOrderData();
-  });
+    // loadOrderData();
+  }, []);
 
 //   console.log("location", sessionStorage.getItem("lofiteeslocationprofile"));
   
@@ -46,7 +41,10 @@ const MyProfile = (props) => {
         <div style={{ textAlign: "center", fontSize: 28, fontWeight: "bold" }}>
         Welcome back {myUsername}
         <Card>
-            <Card.Header>Hello</Card.Header>
+            <Card.Header>Your Orders Summary</Card.Header>
+            <Card.Body>
+                <MyOrders />
+            </Card.Body>
         </Card>
         </div>
       </div>
