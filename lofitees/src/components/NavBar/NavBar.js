@@ -9,8 +9,8 @@ const NavigationBar = (props) => {
       method: "POST",
       headers: myHeaders,
     });
-    window.location = "/";
     sessionStorage.clear();
+    window.location = "/";
   };
 
   return (

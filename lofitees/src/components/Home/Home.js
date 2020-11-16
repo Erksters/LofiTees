@@ -8,6 +8,8 @@ const Home = (props) => {
   const [shirts, setShirts] = useState([]);
 
   console.log(findToken);
+  console.log(shirts);
+
   const loadData = async () => {
     await fetch(allShirts)
       .then((response) => {
