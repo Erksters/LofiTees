@@ -1,37 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { myProfileServer, myOrdersServer } from "../../api/api";
+import { myProfileServer } from "../../api/api";
 import { Button, Card } from "react-bootstrap";
 import { findToken } from "../../api/api";
 import MyOrders from "./MyOrders";
 
 const MyProfile = (props) => {
-  const myUsername = sessionStorage.getItem("lofiteesusername")
-  const myToken = findToken;
-//   console.log("MY TOKEN", myToken)
-//   console.log("MY UserName", myUsername)
+  const myUsername = sessionStorage.getItem("lofiteesusername");
+  const [myProfileData , setMyProfileData] = useState([]);
 
-//   const loadOrderData = async () => {
-//     const uploadData = new FormData();
-//     uploadData.append("user_name", myUsername);
-//     console.log("AWAITING???", myOrdersServer)
-//     await fetch(myOrdersServer, {
-//         method: "POST",
-//         body: uploadData
-//     })
-//       .then((res) => res.json())
-//       .then((body) =>
-//        setMyOrders([...body["results"]])
-//       )
-//       .catch((error) => {console.log("SOME ERROR")});
-//   };
+  const loadProfileData = async () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Token ${findToken}`);
+    await fetch(myProfileServer, {
+      method: "POST",
+      headers: myHeaders,
+    })
+      .then((res) => res.json())
+      .then((body) =>{
+          // console.log("Body", body)
+        setMyProfileData([...body])
+      }
+       
+      )
+      .catch((error) => {console.log("SOME ERROR")});
+  };
 
   useEffect(() => {
-    // loadOrderData();
+    loadProfileData();
   }, []);
+  console.log("My Profile Data" ,myProfileData)
 
 //   console.log("location", sessionStorage.getItem("lofiteeslocationprofile"));
   
-  if (!myToken) {
+  if (!findToken) {
     window.location.href = "/"
   }
   return (

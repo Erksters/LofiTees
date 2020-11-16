@@ -38,7 +38,7 @@ const MyOrders = (props) => {
              <Card>
                 <Card.Header>
                     <div style={{float:"left"}}>Shipping information</div>
-                    <div style={{float:"right"}}>Order #{order.pk}</div>
+                    <div style={{float:"right"}}>Order ID#{order.pk}</div>
                 </Card.Header>
                 <Card.Body>
                     <Col>
