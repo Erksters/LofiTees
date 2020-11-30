@@ -8,6 +8,7 @@ import Header from "./components/Header/Header";
 import NavigationBar from "./components/NavBar/NavBar";
 import ShowMyCart from "./components/MyCart/ShowMyCart";
 import MyProfile from "./components/MyProfile/MyProfile";
+import SignUpPage from "./components/SignUp/SignUp";
 
 const App = () => {
   return (
@@ -20,8 +21,12 @@ const App = () => {
             <LoginPage />
           </Route>
 
+          <Route exact path="/sign-up">
+            <SignUpPage />          
+          </Route>
+
           <Route exact path="/my_profile">
-            <MyProfile />
+            <MyProfile /> 
           </Route>
 
           <Route exact path="/my_cart">

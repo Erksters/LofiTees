@@ -27,6 +27,9 @@ const NavigationBar = (props) => {
           ) : (
             <Nav.Link href="/login">Sign In</Nav.Link>
           )}
+          {!findToken &&
+            <Nav.Link href="/sign-up">Sign up</Nav.Link>
+          }
           {findToken ? (
             <NavDropdown title="More" id="basic-nav-dropdown">
               <NavDropdown.Item href="/my_profile">
