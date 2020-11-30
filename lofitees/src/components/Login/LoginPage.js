@@ -6,6 +6,7 @@ const LoginPage = (props) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
+
   const HandleSubmit = () => {
     const uploadData = new FormData();
     uploadData.append("username", userName);
@@ -32,14 +33,15 @@ const LoginPage = (props) => {
 
   return (
     <>
-      {/* On small Screens */}
+      {/* On Large Screens */}
       <div className="d-none d-lg-block">
         <div className="p-2" style={{ textAlign: "center" }}>
-          <label className="pr-2">Enter UserName</label>
+          <label className="pr-2">Enter a Username</label>
           <input type="text" onChange={(e) => setUserName(e.target.value)} />
           <br />
           <label className="pr-2">Enter password</label>
           <input type="text" onChange={(e) => setPassword(e.target.value)} />
+
         </div>
 
         <div className="centerDiv">
@@ -52,16 +54,11 @@ const LoginPage = (props) => {
       <div className="d-lg-none">
         <div className="p-2" style={{ textAlign: "center" }}>
           <Button href="/" size="lg" block>
-            Login
+            Sign In
           </Button>
         </div>
       </div>
 
-      <div
-        style={{
-          backgroundColor: "whitesmoke",
-        }}
-      ></div>
     </>
   );
 };
