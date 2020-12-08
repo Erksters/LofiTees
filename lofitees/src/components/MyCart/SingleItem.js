@@ -39,9 +39,9 @@ const SingleItem = (props) => {
           />
         </div>
 
-        <div style={{ fontSize: 32 }}>X {item["amount"]}</div>
+        <div style={{ fontSize: 32, alignSelf:"center" }}>&nbsp; X {item["amount"]} &nbsp;</div>
 
-        <div> {item["ID_Size"].split(".")[1]}</div>
+        <div style={{ fontSize: 32, alignSelf:"center" }}> {item["ID_Size"].split(".")[1]}</div>
       </div>
     );
   }

@@ -28,14 +28,15 @@ const ShowMyCart = (props) => {
     splitList = shirtIDs.split(",");
   }
   
-  
   splitList.splice(splitList.length - 1, 1);
+
+  var num = (19.99 * splitList.length * 1.07).toFixed(2)
 
   let paypalRef = useRef();
 
   const [loaded, setLoaded] = useState(false);
   const product = {
-    price: splitList.length * 19.99,
+    price: num,
     description: `Purchase shirts with free shipping and handling`,
   };
 
@@ -77,7 +78,7 @@ const ShowMyCart = (props) => {
                     description: product.description,
                     amount: {
                       currency_code: "USD",
-                      value: "19.99",
+                      value: `${product.price.toString()}`,
                     },
                   },
                 ],
