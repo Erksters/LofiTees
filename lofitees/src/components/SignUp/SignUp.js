@@ -79,6 +79,7 @@ const SignUpPage = (props) => {
           <br />
           <label className="pr-2">Re-Enter Password</label>
           <input type="password" onChange={(e) => setPassword2(e.target.value)} />
+
         </div>
 
         <div className="centerDiv">
