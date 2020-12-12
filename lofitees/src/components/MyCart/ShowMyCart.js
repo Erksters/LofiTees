@@ -19,7 +19,9 @@ const ShowMyCart = (props) => {
   const [state, setState] = useState("");
   const [zipcode, setZipcode] = useState("");
 
+  
   const shirtIDs = sessionStorage.getItem("myCart");
+  console.log("shirtIDs" , shirtIDs)
   var splitList;
   if(shirtIDs === null ){
     splitList = [];
@@ -99,6 +101,9 @@ const ShowMyCart = (props) => {
               uploadData.append("state", state);
               uploadData.append("zipcode", zipcode);
               uploadData.append("lines", splitList);
+              uploadData.append("paypal_id", data.orderID)
+              console.log("Data", data.orderID);
+              console.log("Actions", actions);
 
               if(findUsername){
                 uploadData.append("user_name", findUsername)
@@ -110,12 +115,13 @@ const ShowMyCart = (props) => {
               })
                 .then((res) => {
                   if (res.status === 200) {
+                    sessionStorage.setItem("myCart", "");
                     swal(`An email confirmation has been sent to ${userEmail}`);
                   }
                 })
                 .catch((err) => console.log("ERROR ", err));
-            },
-          })
+              },
+            })
           .render(paypalRef);
       }, 1000);
     }

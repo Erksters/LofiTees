@@ -72,13 +72,13 @@ const SignUpPage = (props) => {
           <input type="text" onChange={(e) => setLastName(e.target.value)} />
           <br />
           <label className="pr-2">Enter Email Address</label>
-          <input type="text" onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" onChange={(e) => setEmail(e.target.value)} />
           <br />
           <label className="pr-2">Enter Password</label>
-          <input type="text" onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" onChange={(e) => setPassword(e.target.value)} />
           <br />
           <label className="pr-2">Re-Enter Password</label>
-          <input type="text" onChange={(e) => setPassword2(e.target.value)} />
+          <input type="password" onChange={(e) => setPassword2(e.target.value)} />
         </div>
 
         <div className="centerDiv">
