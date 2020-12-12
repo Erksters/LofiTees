@@ -19,7 +19,9 @@ const ShowMyCart = (props) => {
   const [state, setState] = useState("");
   const [zipcode, setZipcode] = useState("");
 
+  
   const shirtIDs = sessionStorage.getItem("myCart");
+  console.log("shirtIDs" , shirtIDs)
   var splitList;
   if(shirtIDs === null ){
     splitList = [];
@@ -28,14 +30,15 @@ const ShowMyCart = (props) => {
     splitList = shirtIDs.split(",");
   }
   
-  
   splitList.splice(splitList.length - 1, 1);
+
+  var num = (19.99 * splitList.length * 1.07).toFixed(2)
 
   let paypalRef = useRef();
 
   const [loaded, setLoaded] = useState(false);
   const product = {
-    price: splitList.length * 19.99,
+    price: num,
     description: `Purchase shirts with free shipping and handling`,
   };
 
@@ -77,7 +80,7 @@ const ShowMyCart = (props) => {
                     description: product.description,
                     amount: {
                       currency_code: "USD",
-                      value: "19.99",
+                      value: `${product.price.toString()}`,
                     },
                   },
                 ],
@@ -98,6 +101,9 @@ const ShowMyCart = (props) => {
               uploadData.append("state", state);
               uploadData.append("zipcode", zipcode);
               uploadData.append("lines", splitList);
+              uploadData.append("paypal_id", data.orderID)
+              console.log("Data", data.orderID);
+              console.log("Actions", actions);
 
               if(findUsername){
                 uploadData.append("user_name", findUsername)
@@ -109,12 +115,13 @@ const ShowMyCart = (props) => {
               })
                 .then((res) => {
                   if (res.status === 200) {
+                    sessionStorage.setItem("myCart", "");
                     swal(`An email confirmation has been sent to ${userEmail}`);
                   }
                 })
                 .catch((err) => console.log("ERROR ", err));
-            },
-          })
+              },
+            })
           .render(paypalRef);
       }, 1000);
     }
